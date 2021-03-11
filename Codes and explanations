@@ -1,0 +1,354 @@
+static void Button(ref int ButtonKey)
+        {
+            Console.Write("Işıkları açmak için 1, kapatmak için 0 giriniz ");
+            Console.ReadLine();
+            while (true)
+            {
+                
+                if (ButtonKey == 1)
+                {
+                    break;
+                }
+                else if (ButtonKey == 0)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Hatalı Giriş");
+                    Button(ref ButtonKey);
+                }
+
+
+            }
+              Console.WriteLine(ButtonKey == 1 ? "Işıkları aç" : " Işıkları Kapat");
+        }
+        static int Topla(params int[] numbers)
+        {
+            return numbers.Sum();
+        }
+        static void Toplama()
+        {
+            Console.WriteLine("toplamak istediğiniz sayıları giriniz");
+            Topla();
+        }
+        static void El()
+        {
+            string[,] Parmak = new string[2, 5]
+            {
+                {"1","2","3","4","5"},
+                {"1","2","3","4","5"},
+            };
+            for (int i = 0; i <= Parmak.GetUpperBound(0); i++)
+            {
+                for (int t = 0; t <= Parmak.GetUpperBound(1); t++)
+                {
+                    Console.WriteLine(Parmak[i,t]);
+                }
+            }
+        }
+        static void IsimYaz()
+        {
+            string[] isimler = new string[5] { "Mom i can fly", "2", "3", "4", "5" };
+            foreach (var isim in isimler)
+            {
+                Console.WriteLine(isim);
+            }
+            Console.WriteLine(string.Format(isimler[0]+isimler[1])); //iki stringi tek eleman olarak 1. + 2. eleman değişkeni oluşturmadan yazdırmak için
+            string IsimDegiskeni = isimler[0];
+            Console.WriteLine(IsimDegiskeni.Length); // elemanın kaç karakterden oluştuğunu veren hazır fonk.
+            var IsimDegiskeni1 = isimler[0].Clone(); // clone alma
+            bool EvetHayır = IsimDegiskeni.EndsWith("1"); // son harf ... ile bitiyor mu bitmiyor mu ?
+            bool EvetHayır1 = IsimDegiskeni.StartsWith("1"); // son harf ... ile başlıyor mu başlamıyor  mu ?
+            var res = IsimDegiskeni.IndexOf(" "); // ARAMA BAŞTAN BAŞLAR değişkenin içinde 1 arar dönüş olarak kaçıncı eleman olduğunun döner
+            var res1 = IsimDegiskeni.LastIndexOf(" "); // ARAMAYA SONDAN BAŞLAR değişkeni içinde arar bulduğu index i return eder
+            var res2 = IsimDegiskeni.Insert(0, "Hey "); // Stringin istenen indexine ekleme yapar
+            var res3 = IsimDegiskeni.Substring(3); // istenen indexten itibaren stringi ayırır
+            var res4 = IsimDegiskeni.Substring(3, 5); // istenen indexten itibaren istenen karakter uzunluğu kadar ilerler stringin o kısmını alır
+            var res5 = IsimDegiskeni.ToLower(); // to lower tüm karakterleri küçük harfe dönüştürür
+            var res6 = IsimDegiskeni.ToUpper(); // tüm karakterleri büyük harfe dönüştürür
+            var res7 = IsimDegiskeni.Replace(" ", "_"); // belirtilen karakteri başka karaktere dönüştürür
+            var res8 = IsimDegiskeni.Remove(3, 5); // belirtilen indexten sonrasını yada istenilen index aralığını çıkarır
+
+
+        }
+        static void ClassIslemleri()
+        {
+            //class işlemleri
+            UsefullClass usefullClass = new UsefullClass(); //oluşturulan classı kullanabilmek için instance oluşturmak
+            usefullClass.RngMethod(); //oluşturulan yeni class daki method u çağırmak için class instance ını kullanmak
+            UsefullClassToo usefullClassToo = new UsefullClassToo(); //oluşturulan classı kullanabilmek için instance oluşturmak
+            usefullClassToo.FirstName = "ekmek"; // class da oluşturulan nesneleri düzenleme
+            usefullClassToo.LastName = "kutusu"; // class da oluşturulan nesneleri düzenleme
+            usefullClassToo.Id = "1-11-13"; // class da oluşturulan nesneleri düzenleme
+        }
+        static void InterfaceIslemleri()
+        {
+            //Interface işlemleri
+            PersonInterfaceManager boxer = new PersonInterfaceManager(); //interface manager üzerine boxer nesnesi oluşturdum
+            //oluşturduğum nesnenin türünü belirleyip özellik atamasını yaptım
+            boxer.Add(new BoxerClassForInterface { Name = "boksörün adı", Surname = "boksörün soyadı", NickName = "boksörün lakabı" });
+            PersonInterfaceManager wrestler = new PersonInterfaceManager();
+            wrestler.Add(new WrestlerClassForInterface { Name = "güreşçinin adı", });
+            //burada ise tek satırda IPerson yapısı üzerinden RapperClassForInterface ile yeni rapper tanımladım -IPerson soyut- 
+            IPerson rapper = new RapperClassForInterface() { Name = "rapcinin ismi", Surname = "rapcinin soyadı", NickName = "rapcinin mahlası" };
+            
+            ICustomerDal[] customerDals = new ICustomerDal[] { new SqlServerCustomerDal(), new OracleServerCustomerDal() };
+            //ICustomerDal ı kullanarak Array olarak tanımladım içine sql ve oracle DAL larını tanımladım
+            foreach (var customerDal in customerDals)//bu sayede foreach kullanarak tüm elemanlarını gezdim benzer ieyler yapılabilir
+            {
+                customerDal.Add();
+            }
+            Console.Read();
+        }
+        static void InheritanceIslemleri()
+        {
+            Person[] Persons = new Person[2]
+            {
+                new Person
+                {
+                    Ad = "Can",
+                    Soyad = "ıtın"
+                },
+                new Teacher
+                {
+                    Ad = "Ken",
+                    Soyad ="dirik",
+                    Branch = "Boş"
+                }
+            };
+            foreach (var person in Persons)
+            {
+                Console.WriteLine(person.Ad+" "+person.Soyad);
+            }
+        }
+        static void AbstractIslemleri()
+        {
+            DatabaseExampleForAbstract oracleDatabase01 = new  OracleServerForAbstract();
+            oracleDatabase01.Add();
+            oracleDatabase01.Delete();
+            DatabaseExampleForAbstract sqlDatabase01 = new SqlServerForAbstract();
+            sqlDatabase01.Add();
+            sqlDatabase01.Delete();
+            Console.Read();
+        }
+        static void ConstructorIslemleri()
+        {
+            ConstructorBlocks constructorBlocks = new ConstructorBlocks();
+            
+        }
+        
+        public static void Main(string[] args)
+        {
+            //Button(ref ButtonKey);
+            //toplama();
+            //El();
+            //IsimYaz();
+            //ClassIslemleri();
+            //INterfaceIslemleri();
+            //InheritanceIslemleri();
+            //ConstructorIslemleri();
+
+        }
+         
+        
+    }
+    class ConstructorBlocks
+    {
+        //ctor TAB TAB
+        private int _count;
+        public void Change (int count)
+        {
+            _count = count;
+        }
+        public void List()
+        {
+            Console.WriteLine(_count + " obj added");
+            Console.Read();
+        }
+        
+    }
+    internal class ErisimBildirgecleri //internal referans bildirmeden kullanılabilir
+        //bir class internal yada public olabilir iç içe yani nested classlar da private kullanılabilir
+    {
+        protected string PrtctThs; //inheritance alındığı yerde de geçerli
+        public string PrtcttdThng { get { return PrtctThs; } set { PrtctThs = value; } }
+        private string _myFeelings { get; set; } // sadece tanımlı olduğu blokta geçerlidir, alt çizgiyle başlatılır
+    }
+    class Person
+    {
+        public string Ad { get; set; }
+        public string Soyad { get; set; }
+        
+    }
+    class Gender
+    {
+        public string GenderType { get; set; }
+    }
+    class Teacher : Person
+    {
+        public string Branch { get; set; }
+    }
+    class UsefullClass // yeni class tanımlaması
+    {
+        public void RngMethod() // yeni method tanımlaması
+        {
+            Console.WriteLine("just smthn");
+        }
+    }
+    class UsefullClassToo // yeni class tanımlaması
+    {
+        public void RngMethodToo() // yeni method tanımlaması
+        {
+            Console.WriteLine("just smthn too");
+        }
+        public string Id { get; set; } // prop [TAB][TAB] kullanım kolaylığı
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+    }
+    interface IPerson //her hangi birey tanımlamak için interface
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+    }
+    class RapperClassForInterface : IPerson
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string NickName { get; set; }
+    } //rapper birey tanımlamak için IPerson üzerinden class açtım
+    class BoxerClassForInterface : IPerson
+    {
+        public string Name { get; set; } //interface den alınmış nesneler
+        public string Surname { get; set; }
+        public string NickName { get; set; } // boksör sınıfına ait nesneler
+    } //boxer birey tanımlamak için IPerson üzerinden class açtım
+    class WrestlerClassForInterface : IPerson
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+
+    } //wrestler birey tanımlamak için IPerson üzerinden class açtım
+    class PersonInterfaceManager
+    {
+        public void Add(IPerson person) //Iperson çağırmamın ve yeni "person" eklememin sebebi
+                                       //daha sonra ekleyeceğim veya şu an bulunan birden fazla boksör güreşçi vs gibi tiperden
+                                      //eklemek istediğimi InterfaceManager üzerinde değişiklik yapmadan eklemek için
+        {
+            Console.WriteLine(person.Surname);
+        }
+    }  //IPerson a bağlı bireyleri düzenlemek için class
+    interface ICustomerDal //Farklı kütüphanelerde kullanılmak üzere oluşturulmuş
+                          //müşteri datası düzenleme interface i
+                         //yapılacak işlemler ortak işlemlerin yapılcağıkütüphaneler yada platformlar 
+                        //farklı olduğunda interface kullanma örneği
+    {
+        void Add();
+        void Update();
+        void Delete();
+    }
+    interface IAdminDal
+    {
+        void ShutDown();
+        void Lock();
+    }//Yönetici Interface i
+    interface IOwner
+    {
+        void Salary();
+        void Fire();
+    }//Sahip Interface i
+    class Owner : IAdminDal, IOwner
+    {
+        public void Fire()
+        {
+            
+        }
+
+        public void Lock()
+        {
+            
+        }
+
+        public void Salary()
+        {
+            
+        }
+
+        public void ShutDown()
+        {
+            
+        }
+    }//Birden fazla interface kullanılması gereken yetkilendirme gibi durumlarda kullanım
+    class SqlServerCustomerDal : ICustomerDal
+    {
+        public void Add()
+        {
+            Console.WriteLine("SqlServerCustomerDal Add mission succesfull");
+        }
+
+        public void Delete()
+        {
+            
+        }
+
+        public void Update()
+        {
+           
+        }
+    }//SQL serveri için oluşturulmuş DAL class ı
+    class OracleServerCustomerDal : ICustomerDal
+    {
+        public void Add()
+        {
+            Console.WriteLine("OracleServerCustomerDal Add mission succesfull");
+        }
+
+        public void Delete()
+        {
+            
+        }
+
+        public void Update()
+        {
+           
+        }
+    }//Oracle serveri için oluşturulmuş DAL class ı
+    class SanalMethot
+    {
+        public virtual void VirtualMethod()
+        {
+            Console.WriteLine("Sanal metot çalıştı");
+        }
+    }//tekrar yönetilerbilir alternatif çalışma şekli olan methot
+    class OverrideMethodu : SanalMethot
+    {
+        public override void VirtualMethod()
+        {
+            Console.WriteLine("Sanal metot yerine override çalıştı");
+        }
+    }//Kalıtım kullanarak mevcut methodun yerini alan (ezen) methot
+    abstract class DatabaseExampleForAbstract//Kullanımdan kullanıma farklılık gösteren farklı alanlarda
+                                 //farklı kullanımları olan abstract method için abstract class
+    {
+        public void Add()
+        {
+            Console.WriteLine("Successfully added");
+        }
+        public abstract void Delete();//daha sonra şekillendirilecek abstract method
+    }
+    class SqlServerForAbstract : DatabaseExampleForAbstract
+    {
+        public override void Delete()//yukarda tanımlanan abstract için bu class üzerinde
+                                    //çalıştırılacak override method
+        {
+            Console.WriteLine("SQL server data successfuly deleted");
+        }
+    }
+    class OracleServerForAbstract : DatabaseExampleForAbstract
+    {
+        public override void Delete()
+        {
+            Console.WriteLine("Oracle server data successfuly deleted");
+        }
+    }
